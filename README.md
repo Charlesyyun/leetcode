@@ -21,6 +21,7 @@
 2. 常规遍历的算法通常有两种：
 
  (1)递归解法（dfs)：前中后遍历的话调换一下result.append(root.val)的位置即可；
+ ![Load Failed](https://pic.leetcode-cn.com/c00cf3325eaf0037d35f15c811d747c22980f7df5b82ea90958199ef5edbb321.png)
  ```
       def dfs(root,result):
         if root==None: return
@@ -52,6 +53,7 @@
   ```
         
 3. 非常规的奇葩遍历，层序遍历：用队列来迭代（先进先出）
+![Load Failed](https://pic.leetcode-cn.com/68bd2b9b62ec200ad68843565e06fcb238ee7e83f7385deb825920b9889175df.png)
 ```
     def levelOrder(self, root: TreeNode) -> List[List[int]]:
         if root==None: return []
