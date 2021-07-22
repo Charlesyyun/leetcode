@@ -35,7 +35,7 @@
     如果 node 的右子树非空，将右子树入栈；
     如果 node 的左子树非空，将左子树入栈；
     由于栈是“先进后出”的顺序，所以入栈时先将右子树入栈，这样使得前序遍历结果为 “根->左->右”的顺序。
-    !(https://pic.leetcode-cn.com/1603759550-TUinjp-14.png)
+    ![Load Failed](https://pic.leetcode-cn.com/1603759550-TUinjp-14.png)
  ```
       def preorderTraversal(root):
         if root==None: return []
