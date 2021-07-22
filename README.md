@@ -15,3 +15,50 @@
 2. 找到母问题和子问题的关系；
 3. 任何动态规划都涉及网络；
 4. 单元格的值就是要优化的目标值，每一个单元格就是一个子问题；
+
+二叉树：
+1. 三种遍历：前序（根->左->右），中序（左->根->右），后序（左->右->根）。可以看出，前中后指的是根所在的位置。
+2. 常规遍历的算法通常有两种：
+ (1)递归解法（dfs)：前中后遍历的话调换一下result.append(root.val)的位置即可；
+      def dfs(root,result):
+        if root==None: return
+        result.append(root.val)
+        dfs(root.left)
+        dfs(root.right)
+ (2)用栈来迭代：我们使用栈来进行迭代，过程如下：
+    初始化栈，并将根节点入栈；
+    当栈不为空时：
+    弹出栈顶元素 node，并将值添加到结果中；
+    如果 node 的右子树非空，将右子树入栈；
+    如果 node 的左子树非空，将左子树入栈；
+    由于栈是“先进后出”的顺序，所以入栈时先将右子树入栈，这样使得前序遍历结果为 “根->左->右”的顺序。
+      def preorderTraversal(root):
+        if root==None: return []
+        stack = [root]
+        result = []
+        while stack!=[]:
+          node = stack.pop()
+          result.append(node.val)
+          if node.right!=None:
+            stack.append(node.right)
+          if node.left!=None:
+            stack.append(node.left)
+        return result
+(3)层序遍历：用队列来迭代（先进先出）
+    def levelOrder(self, root: TreeNode) -> List[List[int]]:
+        if root==None: return []
+        # 初始化queue和result
+        queue = [root]
+        result = []
+        # 对queue进行循环,非空就循环
+        while queue!=[]:
+            level = [] # 初始化该层的列表
+            for i in range(len(queue)):
+                node = queue.pop(0) # 先进先出
+                level.append(node.val) # 往该层列表append队列中出来的值
+                if node.left != None: # 往左子树更新队列
+                    queue.append(node.left)
+                if node.right != None: # 往右子树更新队列
+                    queue.append(node.right)
+            result.append(level)
+        return result
