@@ -25,6 +25,7 @@
         result.append(root.val)
         dfs(root.left)
         dfs(root.right)
+        
  (2)用栈来迭代：我们使用栈来进行迭代，过程如下：
     初始化栈，并将根节点入栈；
     当栈不为空时：
@@ -44,6 +45,7 @@
           if node.left!=None:
             stack.append(node.left)
         return result
+        
 (3)层序遍历：用队列来迭代（先进先出）
     def levelOrder(self, root: TreeNode) -> List[List[int]]:
         if root==None: return []
