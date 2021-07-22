@@ -19,6 +19,7 @@
 二叉树：
 1. 三种遍历：前序（根->左->右），中序（左->根->右），后序（左->右->根）。可以看出，前中后指的是根所在的位置。
 2. 常规遍历的算法通常有两种：
+
  (1)递归解法（dfs)：前中后遍历的话调换一下result.append(root.val)的位置即可；
  ```
       def dfs(root,result):
@@ -34,7 +35,7 @@
     如果 node 的右子树非空，将右子树入栈；
     如果 node 的左子树非空，将左子树入栈；
     由于栈是“先进后出”的顺序，所以入栈时先将右子树入栈，这样使得前序遍历结果为 “根->左->右”的顺序。
-    ```
+ ```
       def preorderTraversal(root):
         if root==None: return []
         stack = [root]
@@ -47,9 +48,9 @@
           if node.left!=None:
             stack.append(node.left)
         return result
-     ```
+  ```
         
-(3)层序遍历：用队列来迭代（先进先出）
+3. 非常规的奇葩遍历，层序遍历：用队列来迭代（先进先出）
 ```
     def levelOrder(self, root: TreeNode) -> List[List[int]]:
         if root==None: return []
