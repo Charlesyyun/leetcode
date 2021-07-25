@@ -76,3 +76,24 @@
             result.append(level)
         return result
 ```
+4. 二叉树的路径遍历，好像必须用字符串的形式记录，否则会输出整个遍历的二叉树
+```
+class Solution:
+    def binaryTreePaths(self, root: TreeNode) -> List[str]:
+        # 先写一个函数来记录所有的路径
+        path = '' # 还在走的每一个路径
+        paths = [] # 已经走到叶子节点的路径
+        def construct_path(root,path):
+            if root: # 如果该节点不为None，加入到path
+                path += str(root.val)
+                if not root.left and not root.right: # 如果已经走到了叶子节点
+                    paths.append(path) # 记录走完毕的该路径
+                else:
+                    # 如果还没走到叶子节点，继续递归
+                    path += '->'
+                    construct_path(root.left,path)
+                    construct_path(root.right,path)
+
+        construct_path(root,path) # 调用写好的路径记录函数，将所有路径存入paths列表
+        return paths
+```
