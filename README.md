@@ -97,3 +97,28 @@ class Solution:
         construct_path(root,path) # 调用写好的路径记录函数，将所有路径存入paths列表
         return paths
 ```
+
+5. 回溯法（专门解决N层嵌套循环写不出来的问题）：暴力求解排列组合问题、切割问题、子集问题、棋盘问题。可以抽象成N叉树形结构。
+```
+class Solution:
+    def permutation(self, s: str) -> List[str]:
+        result = [] # 存放最终结果
+        path = [] # 存放每条路径
+        used = [0] * len(s) # 标记对应元素是否已经使用过
+        def backtracking(s,path,used):
+            # 终止条件
+            if len(path)==len(s):
+                result.append(''.join(path))
+                return
+            for i in range(len(s)):
+                if used[i]==0: # 第i个元素没被用过
+                    used[i] = 1
+                    path.append(s[i])
+                    backtracking(s,path,used)
+                    # 回溯复原
+                    path.pop()
+                    used[i] = 0
+        backtracking(s,path,used)
+        result = list(set(result))
+        return result
+```
