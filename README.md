@@ -108,12 +108,14 @@ class Solution:
         def backtracking(s,path,used):
             # 终止条件
             if len(path)==len(s):
-                result.append(''.join(path))
+                result.append(''.join(path)) # 收集结果
                 return
-            for i in range(len(s)):
+            for i in range(len(s)): # 对集合元素进行循环
                 if used[i]==0: # 第i个元素没被用过
-                    used[i] = 1
+                    # 处理节点
+                    used[i] = 1 
                     path.append(s[i])
+                    # 递归函数
                     backtracking(s,path,used)
                     # 回溯复原
                     path.pop()
